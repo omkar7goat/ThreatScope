@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  threatscope-api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: threatscope_engine
+    ports:
+      - "8000:8000"
+    environment:
+      - THREATSCOPE_ENV=production
+      - RISK_THRESHOLD=0.60
+      - SANDBOX_TIMEOUT_MS=12000
+    restart: unless-stopped
